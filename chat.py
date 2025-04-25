@@ -5,7 +5,12 @@ from google.genai import types
 from secret import API_KEY
 
 client = genai.Client(api_key = API_KEY)
-history=[]
+history=[
+    types.Content(
+            role='user',
+            parts=[types.Part.from_text(text="Your name is Sonu")]
+        )
+]
 while True:
     you = input("\nYou: ")
     history.append(
@@ -18,7 +23,7 @@ while True:
         model='gemini-2.0-flash-001', 
         contents=history
     )
-    print("Ai: " , response.text)
+    print("Sonu: " , response.text)
     history.append(
         types.Content(
             role='model',
